@@ -4,56 +4,198 @@
 <title>Kids Quiz</title>
 
 <style>
+
 body{
-background-color:lightyellow;
-text-align:center;
 font-family:Comic Sans MS;
+background:#fff3cd;
+text-align:center;
+padding:30px;
+}
+
+.quiz-box{
+background:white;
+max-width:500px;
+margin:auto;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 button{
+display:block;
+width:200px;
+margin:10px auto;
 padding:10px;
-margin:10px;
-font-size:18px;
-background-color:orange;
-border-radius:10px;
+font-size:16px;
+background:#4CAF50;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
 }
+
+button:hover{
+background:#45a049;
+}
+
+#result{
+font-size:18px;
+margin-top:15px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-
 <h1>🧠 Kids Quiz</h1>
-<p>Score: <span id="score">0</span></p>
-<h2>Which animal says Meow?</h2>
 
-<button onclick="check('dog')">🐶 Dog</button>
-<button onclick="check('cat')">🐱 Cat</button>
-<button onclick="check('cow')">🐮 Cow</button>
+<div class="quiz-box">
+
+<p>Score: <span id="score">0</span></p>
+
+<h2 id="question"></h2>
+
+<div id="options"></div>
 
 <p id="result"></p>
 
-<a href="index.html">⬅ Go Back</a>
+<br>
+
+<a href="index.html">
+<button>⬅ Back to Home</button>
+</a>
+
+</div>
 
 <script>
-    let score = 0;
+
+let score = 0;
+let current = 0;
+
+let quiz = [
+
+{
+question:"Which animal says Meow?",
+options:["Dog","Cat","Cow"],
+answer:"Cat"
+},
+
+{
+question:"Which animal barks?",
+options:["Dog","Lion","Horse"],
+answer:"Dog"
+},
+
+{
+question:"What color is the sun?",
+options:["Yellow","Blue","Green"],
+answer:"Yellow"
+},
+
+{
+question:"Which fruit is red?",
+options:["Apple","Banana","Grapes"],
+answer:"Apple"
+},
+
+{
+question:"Which animal gives milk?",
+options:["Cow","Tiger","Lion"],
+answer:"Cow"
+},
+
+{
+question:"Which animal is called the king of the jungle?",
+options:["Lion","Dog","Cat"],
+answer:"Lion"
+},
+
+{
+question:"How many legs does a dog have?",
+options:["2","4","6"],
+answer:"4"
+},
+
+{
+question:"Which fruit is yellow?",
+options:["Banana","Apple","Orange"],
+answer:"Banana"
+}
+
+];
+
+function loadQuestion(){
+
+let q = quiz[current];
+
+document.getElementById("question").innerText = q.question;
+
+let optionsHTML = "";
+
+for(let i=0;i<q.options.length;i++){
+
+optionsHTML += "<button onclick=\"check('"+q.options[i]+"')\">"+q.options[i]+"</button>";
+
+}
+
+document.getElementById("options").innerHTML = optionsHTML;
+
+document.getElementById("result").innerText="";
+
+}
 
 function check(answer){
 
-if(answer=="cat"){
+if(answer == quiz[current].answer){
+
 score++;
-document.getElementById("score").innerHTML = score;
-document.getElementById("result").innerHTML="✅ Correct! Cat says Meow.";
+
+document.getElementById("score").innerText = score;
+
+document.getElementById("result").innerText = "✅ Correct!";
+
 }
 else{
-document.getElementById("result").innerHTML="❌ Try Again!";
+
+document.getElementById("result").innerText = "❌ Try Again";
+
+}
+
+current++;
+
+if(current < quiz.length){
+
+setTimeout(loadQuestion,1000);
+
+}else{
+
+document.getElementById("question").innerText = "🎉 Quiz Finished!";
+
+document.getElementById("options").innerHTML = "";
+
+let stars="";
+
+if(score >= 7){
+stars="⭐⭐⭐ Excellent!";
+}
+else if(score >=5){
+stars="⭐⭐ Good Job!";
+}
+else{
+stars="⭐ Keep Practicing!";
+}
+
+document.getElementById("result").innerHTML =
+"Final Score: " + score + "<br><br>" + stars;
 }
 
 }
+
+loadQuestion();
 
 </script>
 
 </body>
 </html>
-
