@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn ABC</title>
+
+<style>
+body{
+background-color:lightpink;
+text-align:center;
+font-family:Comic Sans MS;
+}
+
+.letter{
+font-size:40px;
+margin:20px;
+color:blue;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🔤 Learn ABC</h1>
+
+<div class="letter" onclick="speak('A for Apple')">A for Apple 🍎</div>
+<div class="letter" onclick="speak('B for Ball')">B for Ball ⚽</div>
+<div class="letter" onclick="speak('C for Cat')">C for Cat 🐱</div>
+<div class="letter" onclick="speak('D for Dog')">D for Dog 🐶</div>
+<div class="letter" onclick="speak('E for Elephant')">E for Elephant 🐘</div>
+
+<br>
+
+<a href="index.html">⬅ Go Back</a>
+
+<script>
+function speak(text){
+let speech = new SpeechSynthesisUtterance(text);
+speech.lang = "en-US";
+speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>

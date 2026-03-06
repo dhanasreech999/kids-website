@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kids Quiz</title>
+
+<style>
+body{
+background-color:lightyellow;
+text-align:center;
+font-family:Comic Sans MS;
+}
+
+button{
+padding:10px;
+margin:10px;
+font-size:18px;
+background-color:orange;
+border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🧠 Kids Quiz</h1>
+
+<h2>Which animal says Meow?</h2>
+
+<button onclick="check('dog')">🐶 Dog</button>
+<button onclick="check('cat')">🐱 Cat</button>
+<button onclick="check('cow')">🐮 Cow</button>
+
+<p id="result"></p>
+
+<a href="index.html">⬅ Go Back</a>
+
+<script>
+
+function check(answer){
+
+if(answer=="cat"){
+document.getElementById("result").innerHTML="✅ Correct! Cat says Meow.";
+}
+else{
+document.getElementById("result").innerHTML="❌ Try Again!";
+}
+
+}
+
+</script>
+
+</body>
+</html>
