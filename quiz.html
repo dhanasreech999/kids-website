@@ -23,8 +23,9 @@ border-radius:10px;
 
 <body>
 
-<h1>🧠 Kids Quiz</h1>
 
+<h1>🧠 Kids Quiz</h1>
+<p>Score: <span id="score">0</span></p>
 <h2>Which animal says Meow?</h2>
 
 <button onclick="check('dog')">🐶 Dog</button>
@@ -36,10 +37,13 @@ border-radius:10px;
 <a href="index.html">⬅ Go Back</a>
 
 <script>
+    let score = 0;
 
 function check(answer){
 
 if(answer=="cat"){
+score++;
+document.getElementById("score").innerHTML = score;
 document.getElementById("result").innerHTML="✅ Correct! Cat says Meow.";
 }
 else{
@@ -52,3 +56,4 @@ document.getElementById("result").innerHTML="❌ Try Again!";
 
 </body>
 </html>
+
