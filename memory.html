@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Memory Game</title>
+
+<style>
+
+body{
+font-family:Comic Sans MS;
+background:#e0f7fa;
+text-align:center;
+padding:20px;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,100px);
+gap:10px;
+justify-content:center;
+}
+
+.card{
+width:100px;
+height:100px;
+background:#4CAF50;
+color:white;
+font-size:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+cursor:pointer;
+}
+
+.card.flipped{
+background:white;
+color:black;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🧩 Memory Match Game</h1>
+
+<div class="grid" id="game"></div>
+
+<br>
+
+<a href="index.html">
+<button>⬅ Back to Home</button>
+</a>
+
+<script>
+
+let symbols = ["🐶","🐱","🐶","🐱","🐸","🐸","🐵","🐵"];
+
+symbols.sort(()=>0.5 - Math.random());
+
+let first=null;
+let second=null;
+let lock=false;
+
+let game=document.getElementById("game");
+
+symbols.forEach(symbol=>{
+
+let card=document.createElement("div");
+
+card.className="card";
+
+card.dataset.symbol=symbol;
+
+card.innerHTML="?";
+
+card.onclick=function(){
+
+if(lock || card.classList.contains("flipped")) return;
+
+card.innerHTML=symbol;
+card.classList.add("flipped");
+
+if(!first){
+
+first=card;
+
+}else{
+
+second=card;
+
+if(first.dataset.symbol==second.dataset.symbol){
+
+first=null;
+second=null;
+
+}else{
+
+lock=true;
+
+setTimeout(()=>{
+
+first.innerHTML="?";
+second.innerHTML="?";
+
+first.classList.remove("flipped");
+second.classList.remove("flipped");
+
+first=null;
+second=null;
+lock=false;
+
+},1000);
+
+}
+
+}
+
+};
+
+game.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>

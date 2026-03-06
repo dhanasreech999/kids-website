@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Coloring Page</title>
+
+<style>
+
+body{
+font-family:Comic Sans MS;
+background:#fce4ec;
+text-align:center;
+}
+
+canvas{
+border:3px solid black;
+background:white;
+cursor:crosshair;
+}
+
+.colors{
+margin:15px;
+}
+
+.color-btn{
+width:30px;
+height:30px;
+border-radius:50%;
+display:inline-block;
+margin:5px;
+cursor:pointer;
+border:2px solid black;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎨 Kids Coloring Page</h1>
+
+<div class="colors">
+
+<div class="color-btn" style="background:red" onclick="setColor('red')"></div>
+<div class="color-btn" style="background:blue" onclick="setColor('blue')"></div>
+<div class="color-btn" style="background:green" onclick="setColor('green')"></div>
+<div class="color-btn" style="background:yellow" onclick="setColor('yellow')"></div>
+<div class="color-btn" style="background:black" onclick="setColor('black')"></div>
+
+</div>
+
+<canvas id="board" width="600" height="400"></canvas>
+
+<br><br>
+
+<button onclick="clearBoard()">Clear</button>
+
+<br><br>
+
+<a href="index.html">
+<button>⬅ Back to Home</button>
+</a>
+
+<script>
+
+let canvas=document.getElementById("board");
+let ctx=canvas.getContext("2d");
+
+let drawing=false;
+let color="black";
+
+function setColor(c){
+color=c;
+}
+
+canvas.addEventListener("mousedown",()=>drawing=true);
+
+canvas.addEventListener("mouseup",()=>{
+drawing=false;
+ctx.beginPath();
+});
+
+canvas.addEventListener("mousemove",draw);
+
+function draw(e){
+
+if(!drawing) return;
+
+ctx.lineWidth=5;
+ctx.lineCap="round";
+ctx.strokeStyle=color;
+
+ctx.lineTo(e.offsetX,e.offsetY);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(e.offsetX,e.offsetY);
+
+}
+
+function clearBoard(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
+</script>
+
+</body>
+</html>

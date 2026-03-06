@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Lion and the Mouse</title>
+
+<style>
+
+body{
+background-color:#fff0f5;
+font-family:Comic Sans MS;
+text-align:center;
+padding:40px;
+}
+
+.story{
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+button{
+padding:10px 20px;
+margin-top:15px;
+font-size:16px;
+background-color:#ff9800;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🦁 The Lion and the Mouse</h1>
+
+<div class="story">
+
+<p id="storyText">
+One day a lion was sleeping in the forest.  
+A little mouse ran over his paw and woke him up.  
+
+The lion caught the mouse.  
+The mouse begged, “Please let me go. One day I may help you.”  
+
+The lion laughed but let the mouse go.  
+
+Later the lion was caught in a hunter’s net.  
+The mouse came and chewed the ropes and freed the lion.
+
+</p>
+
+<h3>Moral: Kindness is never wasted.</h3>
+
+<button onclick="readStory()">🔊 Listen Story</button>
+
+<br><br>
+
+<a href="stories.html">
+<button>⬅ Back to Stories</button>
+</a>
+
+</div>
+
+<script>
+
+function readStory(){
+
+let text = document.getElementById("storyText").innerText;
+
+let speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+
+speechSynthesis.speak(speech);
+
+}
+
+</script>
+
+</body>
+</html>
