@@ -4,42 +4,114 @@
 <title>Learn ABC</title>
 
 <style>
+
 body{
-background-color:lightpink;
-text-align:center;
+background-color:#f0f8ff;
 font-family:Comic Sans MS;
+text-align:center;
+}
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+width:150px;
+height:120px;
+background:white;
+margin:10px;
+border-radius:15px;
+box-shadow:0 4px 8px rgba(0,0,0,0.2);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.1);
+background:#ffd966;
 }
 
 .letter{
-font-size:40px;
-margin:20px;
-color:blue;
+font-size:35px;
+font-weight:bold;
 }
+
 </style>
 
 </head>
 
 <body>
 
-<h1>🔤 Learn ABC</h1>
+<h1>🔤 Learn Alphabet</h1>
 
-<div class="letter" onclick="speak('A for Apple')">A for Apple 🍎</div>
-<div class="letter" onclick="speak('B for Ball')">B for Ball ⚽</div>
-<div class="letter" onclick="speak('C for Cat')">C for Cat 🐱</div>
-<div class="letter" onclick="speak('D for Dog')">D for Dog 🐶</div>
-<div class="letter" onclick="speak('E for Elephant')">E for Elephant 🐘</div>
+<div class="container" id="alphabet"></div>
+
+<script>
+
+let alphabet = [
+["A","Apple 🍎"],
+["B","Ball ⚽"],
+["C","Cat 🐱"],
+["D","Dog 🐶"],
+["E","Elephant 🐘"],
+["F","Fish 🐟"],
+["G","Goat 🐐"],
+["H","Horse 🐎"],
+["I","Ice Cream 🍦"],
+["J","Juice 🧃"],
+["K","Kite 🪁"],
+["L","Lion 🦁"],
+["M","Monkey 🐒"],
+["N","Nest 🪺"],
+["O","Orange 🍊"],
+["P","Parrot 🦜"],
+["Q","Queen 👑"],
+["R","Rabbit 🐰"],
+["S","Sun ☀️"],
+["T","Tiger 🐯"],
+["U","Umbrella ☂️"],
+["V","Van 🚐"],
+["W","Watch ⌚"],
+["X","Xylophone 🎵"],
+["Y","Yak 🐂"],
+["Z","Zebra 🦓"]
+];
+
+for(let i=0;i<alphabet.length;i++){
+
+let card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=
+"<div class='letter'>"+alphabet[i][0]+"</div>"+
+"<div>"+alphabet[i][1]+"</div>";
+
+card.onclick=function(){
+
+let speech=new SpeechSynthesisUtterance(
+alphabet[i][0]+" for "+alphabet[i][1]
+);
+
+speechSynthesis.speak(speech);
+
+}
+
+document.getElementById("alphabet").appendChild(card);
+
+}
+
+</script>
 
 <br>
 
 <a href="index.html">⬅ Go Back</a>
-
-<script>
-function speak(text){
-let speech = new SpeechSynthesisUtterance(text);
-speech.lang = "en-US";
-speechSynthesis.speak(speech);
-}
-</script>
 
 </body>
 </html>
